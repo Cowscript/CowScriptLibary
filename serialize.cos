@@ -25,3 +25,40 @@ public function serialize(data){
      return "N;"//defult value is null
   }
 }
+
+public function unserialize(string data){
+  return new Us(data->toChars())->render();
+}
+
+class Us{
+  private char = [];
+  privats pointer = -0;
+
+  Us(array char){
+   this->char = char;
+  }
+
+  public function render(){
+     
+  }
+
+  private function peek(){
+    if(this->contain(this->pointer+1)){
+       return this->char[this->pointer+1];
+    }
+
+    return null;
+  }
+
+  private function pop(){
+    if(this->contain(this->pointer++)){
+       return this->char[this->pointer];
+    }
+
+    return null;
+  }
+
+  private function contain(int){
+      return int <= this->char->length();
+  }
+}

@@ -1,0 +1,27 @@
+use "type";
+
+/*
+ This library can convert data to single string like php serialize().
+*/
+
+public function serialize(data){
+  if(type(data, "array")){
+    ad = "a:"+data->length()+":{";
+      foreach(data as key : value){
+        ad = ad+serialize(key)+serialize(value);
+      }
+    return ad+"}";
+  }elseif(type(data, "string")){
+    return 's:'+data->length()+':"'+data+'";';
+  }elseif(type(data, "int")){
+    return 'i:'+data+';';
+  }elseif(type(data,"bool")){
+     if(data){
+        return "b:1;";
+     }else{
+        return "b:0;";
+     }
+  }else{
+     return "N;"//defult value is null
+  }
+}

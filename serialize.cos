@@ -1,4 +1,7 @@
 use "type";
+use "error";
+use "regex";
+
 
 /*
  This library can convert data to single string like php serialize().
@@ -39,7 +42,52 @@ class Us{
   }
 
   public function render(){
-     
+     if(this->pop() == 'a'){
+       return this->renderArray();
+     }
+  }
+
+  private function renderArray(){
+     if(this->pop() != ':'){
+        error("missing ':' after 'a'");
+     }
+
+     lengt = this->getInt();
+
+     if(this->pop() != ':'){
+        error("missing ':' after array length");
+     }
+
+     if(this->pop() != '{'){
+       error("missing '{' after ':'");
+     }
+
+     i = -1;
+     result = [];
+     while(i++<length){
+       result[this->render()] = this->render();
+     }
+
+     if(this->pop() != '}'){
+        error("missing } in end of array");
+     }
+
+     return result;
+  }
+
+  private function getInt(){
+      result = "";
+      regex = new Regex("^[a-zA-Z]$");
+      
+      while(regex->match(this->peek())){
+          result = result+this-pop();
+      }
+
+      if(result == ""){
+         return 0;
+      }
+
+      return toInt(result);
   }
 
   private function peek(){

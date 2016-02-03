@@ -46,7 +46,53 @@ class Us{
        return this->renderArray();
      }elseif(buffer == 's'){
        return this->renderString();
+     }elseif(buffer == 'i'){
+       return this->renderInt();
+     }elseif(buffer == 'i'){
+       return this->renderBool();
+     }elseif(buffer == 'N'){
+        return this->renderNull();
+     }else{
+        error("unkown tokrn "+buffer);
      }
+  }
+
+  private function renderNull(){
+      if(this->pop() != ';'){
+        error('missing ; after N');
+      }
+
+      return null;
+  }
+
+  private function renderBool(){
+     if(this->pop() != ':'){
+       error('missing : after b');
+     }
+
+     if((b = this->pop()) != '0' && b != '1'){
+        error('unknown bool value');
+     }
+
+     if(this->pop() != ';'){
+       error('missing ; in end of bool');
+     }
+
+     return b == '1';
+  }
+
+  private function renderInt(){
+     if(this->pop() != ':'){
+       error('missing : after i');
+     }
+
+     i = this->getInt();
+
+     if(this->pop() != ';'){
+       error("missing ; in end of int");
+     }
+
+     return i;
   }
 
   private function renderString(){
@@ -60,8 +106,25 @@ class Us{
         error("missing ':' after string length");
      }
 
+     if(this->pop() != '"'){
+        error('missing " in the begin of string");
+     }
+
      result = "";
-     i
+     i = -1;
+     while(i++ < length){
+       result = result+this->pop();
+     }
+
+     if(this->pop() != '"'){
+        error('missing " in end of string');
+     }
+
+     if(this->pop() != ';'){
+        error('missing ; in end of string');
+     }
+
+     return result;
   }
 
   private function renderArray(){

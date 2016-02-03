@@ -42,9 +42,26 @@ class Us{
   }
 
   public function render(){
-     if(this->pop() == 'a'){
+     if(buffer = this->pop() == 'a'){
        return this->renderArray();
+     }elseif(buffer == 's'){
+       return this->renderString();
      }
+  }
+
+  private function renderString(){
+     if(this->pop() != ':'){
+        error("missing ':' after 's'");
+     }
+
+     length = this->getInt();
+
+     if(this->pop() != ':'){
+        error("missing ':' after string length");
+     }
+
+     result = "";
+     i
   }
 
   private function renderArray(){
@@ -52,7 +69,7 @@ class Us{
         error("missing ':' after 'a'");
      }
 
-     lengt = this->getInt();
+     length = this->getInt();
 
      if(this->pop() != ':'){
         error("missing ':' after array length");

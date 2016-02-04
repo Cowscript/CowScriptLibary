@@ -42,7 +42,7 @@ class Us{
   }
 
   public function render(){
-     if(buffer = this->pop() == 'a'){
+     if((buffer = this->pop()) == 'a'){
        return this->renderArray();
      }elseif(buffer == 's'){
        return this->renderString();

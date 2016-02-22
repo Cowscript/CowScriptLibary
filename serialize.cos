@@ -2,12 +2,27 @@ use "type";
 use "error";
 use "regex";
 
+/*
+ Version 0.2:
+  create class Serialize
+  Tell 'serialize(data);' return a string
+*/
+
+public class Serialize{
+  public static function string encode(data){
+     return serialize(data);
+  }
+
+  public static function decode(string data){
+     return unserialize(data);
+  }
+}
 
 /*
  This library can convert data to single string like php serialize().
 */
 
-public function serialize(data){
+public function string serialize(data){
   if(type(data, "array")){
     ad = "a:"+data->length()+":{";
       foreach(data as key : value){

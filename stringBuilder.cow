@@ -1,0 +1,19 @@
+public class StringBuilder{
+  private str = "";
+
+  public function append(string str){
+     this->str = this->str+str;
+  }
+
+  public function int length(){
+     return this->str->length();
+  }
+
+  public function string toString(){
+     return this->str;
+  }
+
+  public function unset(){
+     this->str = "";
+  }
+}

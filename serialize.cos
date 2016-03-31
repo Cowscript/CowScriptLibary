@@ -80,7 +80,7 @@ class Us{
       return null;
   }
 
-  private function renderBool(){
+  private function bool renderBool(){
      if(this->pop() != ':'){
        error('missing : after b');
      }
@@ -96,7 +96,7 @@ class Us{
      return b == '1';
   }
 
-  private function renderInt(){
+  private function int renderInt(){
      if(this->pop() != ':'){
        error('missing : after i');
      }
@@ -110,7 +110,7 @@ class Us{
      return i;
   }
 
-  private function renderString(){
+  private function string renderString(){
      if(this->pop() != ':'){
         error("missing ':' after 's'");
      }
@@ -142,7 +142,7 @@ class Us{
      return result;
   }
 
-  private function renderArray(){
+  private function array renderArray(){
      if(this->pop() != ':'){
         error("missing ':' after 'a'");
      }
@@ -170,7 +170,7 @@ class Us{
      return result;
   }
 
-  private function getInt(){
+  private function int getInt(){
       result = "";
       regex = new Regex("^[a-zA-Z]$");
       
@@ -185,7 +185,7 @@ class Us{
       return toInt(result);
   }
 
-  private function peek(){
+  private function string peek(){
     if(this->contain(this->pointer+1)){
        return this->char[this->pointer+1];
     }
@@ -193,7 +193,7 @@ class Us{
     return null;
   }
 
-  private function pop(){
+  private function string pop(){
     if(this->contain(this->pointer++)){
        return this->char[this->pointer];
     }
@@ -201,7 +201,7 @@ class Us{
     return null;
   }
 
-  private function contain(int){
+  private function bool contain(int){
       return int <= this->char->length();
   }
 }
